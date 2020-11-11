@@ -14,7 +14,7 @@ export default class PlanetContainer extends React.Component<any, { planet }> {
   async componentDidMount() {
     const id = this.props.match.params.id;
     const planetRes = await PlanetsService.get(id);
-    const planet = await planetRes.data;
+    const planet = await planetRes;
     this.setState({planet: planet}, () => store.dispatch(stopLoading()));
   }
 

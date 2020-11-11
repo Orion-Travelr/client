@@ -1,4 +1,4 @@
-import * as shell from "shelljs";
+const shell = require("shelljs");
 
 shell.mkdir('-p', 'dist');
 shell.cp("-R", "index.html", "dist/index.html");

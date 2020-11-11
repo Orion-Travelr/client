@@ -33,17 +33,17 @@ export const AmenitiesService = {
 };
 
 export const PlanetsService = {
-  query (params: {[key: string]: string}) {
+  query(params: {[key: string]: string}): Promise<any> {
     const q = qs.stringify({filter: params}, {encode: false });
     return ApiService.request('get', `/planets?${q}`);
   },
-  get (id: number) {
+  get(id: number): Promise<any> {
     return ApiService.request('get', `/planets/${id}`);
   },
-  toggleLike (id: number) {
+  toggleLike(id: number): Promise<any> {
     return ApiService.request('get',`/planets/${id}/likes`);
   },
-  reviews (id: number, pageNumber?: number) {
+  reviews(id: number, pageNumber?: number): Promise<any> {
     return ApiService.request('get', `/planets/${id}/reviews?page=${pageNumber || 1}`);
   },
 };
