@@ -12,15 +12,15 @@
     "copy:assets": "node copyAssets.js",
     "build": "NODE_ENV=development && ./node_modules/webpack/bin/webpack.js --config webpack.config.js && npm run copy:assets",
     "build:prod": "npm run clean && ./node_modules/webpack/bin/webpack.js --config webpack.config.js",
-    "watch": "npm run build -- --watch --watch-poll --progress",
+    "watch": "onchange --await-write-finish 500 -v -i \"src/***/*.ts*\" \"src/*.ts*\" -- npm run restart:container",
     "start:dev": "http-server --proxy http://localhost:8080?",
-    "restart:container": "docker stop client & docker-compose up --force-recreate --no-deps -d --build client",
-    "watch": "onchange --await-write-finish 500 -v -i \"src/***/*.ts*\" \"src/*.ts*\" -- npm run restart:container"
+    "restart:container": "docker stop client & docker-compose up --force-recreate --no-deps -d --build client"
   },
   "dependencies": {
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
+    "change-case": "^4.1.1",
     "dotenv": "^8.2.0",
     "inert": "^5.1.0",
     "lodash": "^4.17.15",

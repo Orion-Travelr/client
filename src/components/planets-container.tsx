@@ -48,7 +48,7 @@ export default class PlanetsContainer extends React.Component<any, { data, loadi
       <div className="mt-2 container">
         <Link to="/" className="d-block text-center mb-2 mt-2"><i className="fas fa-home" /></Link>
         <div className="items row">
-          {data.data.map((item) => {
+          {data.map((item) => {
             return (
               <div className="col-sm-3" key={item.id}>
                 <div className="item">
@@ -57,20 +57,20 @@ export default class PlanetsContainer extends React.Component<any, { data, loadi
                       <button className="card-heart btn text-white text-right" type="button" onClick={(e) => this.likeHandler(e, item.id)}>
                         <i className="far fa-heart" />
                       </button>
-                      <img src={item.relationships.photo.links.thumb_src} alt={item.attributes.name} className="card-img-top"/>
+                      <img src={item.photo.thumbnail} alt={item.name} className="card-img-top"/>
                       <div className="overlay-container">
-                        <figure className="text-xs m-0 badge badge-primary">${item.attributes.price_dollars} per night</figure>
-                        <h5 className="card-title mb-0">{item.attributes.name}</h5>
-                        <small className="text-sm text-uppercase">{item.relationships.galaxy.meta.name}</small>
+                        <figure className="text-xs m-0 badge badge-primary">${item.price_dollars} per night</figure>
+                        <h5 className="card-title mb-0">{item.name}</h5>
+                        <small className="text-sm text-uppercase">{item.galaxy.name}</small>
                       </div>
                     </Link>
 
                     <div className="card-body">
                       <span className="text-muted text-xs">
                         <span>
-                          <StarRating rating={(item.attributes.average_rating)} />
+                          <StarRating rating={(item.average_rating || 0)} />
                         </span>
-                        <span className="ml-1 text-muted">({item.attributes.total_reviews})</span>
+                        <span className="ml-1 text-muted">({item.total_reviews || 0})</span>
                       </span>
                     </div>
                   </div>

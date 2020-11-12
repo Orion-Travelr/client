@@ -1,4 +1,5 @@
 import http, {AxiosRequestConfig, Method} from "axios";
+import {PlanetResponse} from '@/services/PlanetResponse';
 const qs = require('qs');
 
 const ApiService = {
@@ -37,8 +38,10 @@ export const PlanetsService = {
     const q = qs.stringify({filter: params}, {encode: false });
     return ApiService.request('get', `/planets?${q}`);
   },
-  get(id: number): Promise<any> {
-    return ApiService.request('get', `/planets/${id}`);
+  async get(id: number): Promise<PlanetResponse> {
+    const response = await ApiService.request('get', `/planets/${id}`);
+    
+    return await response.data;
   },
   toggleLike(id: number): Promise<any> {
     return ApiService.request('get',`/planets/${id}/likes`);
