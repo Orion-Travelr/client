@@ -17,7 +17,7 @@ export default class PlanetContainer extends React.Component<any, { planet }> {
     const planet = await PlanetsService.get(id);
     this.setState({planet: planet}, () => store.dispatch(stopLoading()));
   }
-  
+
   normalizePopulation = (number: any): number|string => {
     number = Number(number);
     if (number === null) {
@@ -30,7 +30,7 @@ export default class PlanetContainer extends React.Component<any, { planet }> {
       k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3),
       c = k < 1 ? number.toFixed(0) : (number / Math.pow(10, k * 3) ).toFixed(1),
       d = c < 0 ? c : Math.abs(c);
-    
+
     return d + ['', 'K', 'M', 'B', 'T'][k];
   };
 

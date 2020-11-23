@@ -37,7 +37,7 @@ export default class PlanetsContainer extends React.Component<any, { data, loadi
       return <h3 className="center-of-screen text-white text-center">Fueling up the tanks, and reviewing ignition plans...</h3>;
     }
 
-    if (!loading && data.data.length === 0) {
+    if (!loading && data.length === 0) {
       return <h3 className="center-of-screen text-white text-center">
         Sorry, we were unable to find planets that meet your needs :(
         <Link to="/" className="d-block mt-3"><i className="fas fa-home"/></Link>

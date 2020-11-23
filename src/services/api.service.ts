@@ -35,12 +35,13 @@ export const AmenitiesService = {
 
 export const PlanetsService = {
   query(params: {[key: string]: string}): Promise<any> {
-    const q = qs.stringify({filter: params}, {encode: false });
-    return ApiService.request('get', `/planets?${q}`);
+    const q = qs.stringify(params, {encode: false, arrayFormat: 'comma'});
+
+    return ApiService.request('get', `/planets/search?${q}`);
   },
   async get(id: number): Promise<PlanetResponse> {
     const response = await ApiService.request('get', `/planets/${id}`);
-    
+
     return await response.data;
   },
   toggleLike(id: number): Promise<any> {

@@ -7,9 +7,7 @@ const qs = require('qs');
 interface BaseApiEntity {
   type: string,
   id: string,
-  attributes: {
-    name: string,
-  }
+  name: string,
 }
 
 interface SearchPlanetsState {
@@ -36,10 +34,10 @@ export default class HomeContainer extends React.Component<any, SearchPlanetsSta
 
   async componentDidMount() {
     const galaxiesResponse = await GalaxiesService.all();
-    const galaxies = await galaxiesResponse.data;
+    const galaxies = await galaxiesResponse;
 
     const amenitiesResponse = await AmenitiesService.all();
-    const amenities = await amenitiesResponse.data;
+    const amenities = await amenitiesResponse;
 
     this.setState({
       ready: true,
@@ -93,14 +91,14 @@ export default class HomeContainer extends React.Component<any, SearchPlanetsSta
                 <div className="col-md-3 col-sm-3">
                   <div className="form-group" >
                     <select className={'form-control'} id={'galaxy'} placeholder={'Select galaxy'} onChange={this.handleGalaxyChange}>
-                      {galaxies.data.map((galaxy: BaseApiEntity) => <option key={galaxy.id} value={galaxy.id}>{galaxy.attributes.name}</option>)}
+                      {galaxies.data.map((galaxy: BaseApiEntity) => <option key={galaxy.id} value={galaxy.id}>{galaxy.name}</option>)}
                     </select>
                   </div>
                 </div>
                 <div className="col-md-3 col-sm-3">
                   <div className="form-group">
                     <select multiple={true} className={'form-control'} id={'amenities'} placeholder={'Select amenities'} onChange={this.handleAmenityChange}>
-                      {amenities.data.map((amenity: BaseApiEntity) => <option key={amenity.id} value={amenity.id}>{amenity.attributes.name}</option>)}
+                      {amenities.data.map((amenity: BaseApiEntity) => <option key={amenity.id} value={amenity.id}>{amenity.name}</option>)}
                     </select>
                   </div>
                 </div>

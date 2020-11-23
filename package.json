@@ -13,8 +13,7 @@
     "build": "NODE_ENV=development && ./node_modules/webpack/bin/webpack.js --config webpack.config.js && npm run copy:assets",
     "build:prod": "npm run clean && ./node_modules/webpack/bin/webpack.js --config webpack.config.js",
     "watch": "onchange --await-write-finish 500 -v -i \"src/***/*.ts*\" \"src/*.ts*\" -- npm run restart:container",
-    "start:dev": "http-server --proxy http://localhost:8080?",
-    "restart:container": "docker stop client & docker-compose up --force-recreate --no-deps -d --build client"
+    "start": "http-server ./dist --proxy http://localhost:8080?"
   },
   "dependencies": {
     "@types/react": "^16.9.35",
