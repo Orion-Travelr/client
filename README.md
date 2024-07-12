@@ -1,5 +1,5 @@
 # travelrjs-client
 
-Typescript
-React
-Redux
+- Typescript
+- React
+- Redux
